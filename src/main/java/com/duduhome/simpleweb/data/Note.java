@@ -16,6 +16,7 @@ public class Note {
     @JsonProperty
     private DateTime _createDate;
 
+
     public int getId(){
         return _id;
     }
