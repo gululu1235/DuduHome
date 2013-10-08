@@ -1,27 +1,28 @@
 package com.duduhome.simpleweb.data;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Objects;
 import org.joda.time.DateTime;
 
 public class Note {
-    @JsonProperty
     private int _id;
-
-    @JsonProperty
     private String _author;
-
-    @JsonProperty
     private String _content;
+    private String _time;
+    private DateTime _timestamp;
 
-    @JsonProperty
-    private DateTime _createDate;
+    public Note(final String author, final String content) {
+        _author = author;
+        _content = content;
+    }
 
+    public Note() {
+    }
 
-    public int getId(){
+    public int getId() {
         return _id;
     }
 
-    public String getAuthor(){
+    public String getAuthor() {
         return _author;
     }
 
@@ -29,7 +30,30 @@ public class Note {
         return _content;
     }
 
-    public DateTime getCreateDate() {
-        return _createDate;
+    public String getTime() {
+        return _time;
+    }
+
+    public void setId(final int id) {
+        _id = id;
+    }
+
+    public void setTime(String time) {
+        _timestamp = DateTime.parse(time.replace(" ", "T"));
+        _time = time;
+    }
+
+    public void setAuthor(String author) {
+        _author = author;
+    }
+
+    public void setContent(String content) {
+        _content = content;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this.getClass()).add("id", _id).add("author", _author).add("content", _content).add("timestamp", _timestamp).toString();
     }
 }
+
