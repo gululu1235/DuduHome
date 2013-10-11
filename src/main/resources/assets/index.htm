@@ -1,16 +1,26 @@
-<html>
-<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
-<title>
-    一句话评价薛施亮
-</title>
-<body style="background-image:url(bg.jpg)">
-<div style="margin-left: auto; margin-right: auto; background-color:#FFFFFF;width:600px; align:center" >
-    <center><h1><b>小猪猪是乖宝宝！！！</b></h1>
-        <img src="pig.png">
-        <br><h2>你同意吗？</h2><br>
-        <button onclick="alert('真聪明！！')">同意的按我！</button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button onclick="alert('笨蛋，直接按左边的一样嘛！')">不同意的别按我！！</button>
-    </center>
-</div>
-</body>
+<!doctype html>
+<html ng-app="message-app">
+  <head>
+      <script src="js/angular.min.js"></script>
+      <script src="js/message.js"></script>
+  </head>
+  <body>
+      <div ng-controller="messageController">
+          <ul>
+              <li ng-repeat="message in messages">
+                  <span>{{message.author}}</span>&nbsp;:<br>
+                  <span>{{message.content}}</span>  <br>
+                  <span>{{message.time}}</span>
+              </li>
+          </ul>
+          <form ng-submit="addMessage()">
+              <input type="text" ng-model="text"  size="30"
+                     placeholder="text">
+              <input type="text" ng-model="author"  size="30"
+                     placeholder="author">
+              <input class="btn-primary" type="submit" value="add">
+          </form>
+
+      </div>
+  </body>
 </html>

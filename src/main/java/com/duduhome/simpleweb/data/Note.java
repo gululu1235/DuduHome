@@ -1,13 +1,19 @@
 package com.duduhome.simpleweb.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
 import org.joda.time.DateTime;
 
 public class Note {
+    @JsonProperty("id")
     private int _id;
+    @JsonProperty("author")
     private String _author;
+    @JsonProperty("content")
     private String _content;
+    @JsonProperty("time")
     private String _time;
+    @JsonProperty("timestamp")
     private DateTime _timestamp;
 
     public Note(final String author, final String content) {

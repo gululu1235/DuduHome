@@ -1,5 +1,6 @@
 package com.duduhome.simpleweb.data;
 
+import com.google.common.base.Throwables;
 import com.yammer.dropwizard.lifecycle.Managed;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -23,7 +24,7 @@ public class NoteDaoMySQLImpl implements NoteDao, Managed {
     private Connection _conn = null;
     private final QueryRunner _runner;
 
-    public NoteDaoMySQLImpl(String user, String pass, String host, String dbName, String tableName) throws ClassNotFoundException {
+    public NoteDaoMySQLImpl(String user, String pass, String host, String dbName, String tableName){
         _user = user;
         _pass = pass;
         _host = host;
@@ -32,7 +33,11 @@ public class NoteDaoMySQLImpl implements NoteDao, Managed {
         _runner = new QueryRunner();
         _handler = new BeanListHandler<Note>(Note.class);
         //check mysql driver
-        Class.forName("com.mysql.jdbc.Driver");
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw Throwables.propagate(e);
+        }
     }
 
     @Override

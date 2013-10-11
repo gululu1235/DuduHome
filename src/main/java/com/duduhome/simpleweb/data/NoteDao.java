@@ -1,6 +1,8 @@
 package com.duduhome.simpleweb.data;
 
-public interface NoteDao {
+import com.yammer.dropwizard.lifecycle.Managed;
+
+public interface NoteDao extends Managed {
     public void putNote(Note note) throws Exception;
 
     public Note getNoteById(int id) throws Exception;
