@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -48,9 +49,11 @@ public class SimpleWebApiResources {
     }
 
     @POST
-    @Path("PutNotes")
-    public Response getAllNotes(Note note) throws Exception {
+    @Path("PutNote")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putNote(Note note) throws Exception {
         try {
+            System.out.println(note);
             _noteDao.putNote(note);
             return Response.ok().build();
         }
